@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChallengeOneController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/challenge/one/one/{invoice}', [ChallengeOneController::class, 'challengeOneOne'])->name('challenge11');
+Route::get('/challenge/one/two', [ChallengeOneController::class, 'challengeOneTwo'])->name('challenge12');
+Route::get('/challenge/one/tree/a', [ChallengeOneController::class, 'challengeOneTreeA'])->name('challenge13a');
+Route::get('/challenge/one/tree/b', [ChallengeOneController::class, 'challengeOneTreeB'])->name('challenge13a');

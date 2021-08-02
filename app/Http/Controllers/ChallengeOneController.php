@@ -12,12 +12,14 @@ class ChallengeOneController extends Controller
 
     public function challengeOneOne(Invoice $invoice){
 
-        $total_price = $invoice->products->sum('price');
+        $total_price = $invoice->products->sum(function($product){
+            return $product->price * $product->quantity;
+        });
 
         $response = new \stdClass();
         $response->code = Response::HTTP_OK;
         $response->message = 'Total price has been successfully obtained';
-        $response->data = array('invoice' => $invoice, 'total_price' => $total_price);
+        $response->data = array('total_price' => $total_price);
         return response()->json($response, Response::HTTP_OK);
     }
 
@@ -25,7 +27,8 @@ class ChallengeOneController extends Controller
     {
         $invoices = Invoice::all();
         $filter_data = $invoices->filter(function($invoice){
-            return $invoice->products->count() > 100;
+
+            return $invoice->products->where('quantity', '>', 100)->count() > 0;
         });
         $ids_data = $filter_data->map(function ($invoice) {
             return $invoice->id;
@@ -34,7 +37,7 @@ class ChallengeOneController extends Controller
         $response = new \stdClass();
         $response->code = Response::HTTP_OK;
         $response->message = 'IDs invoices has been successfully obtained';
-        $response->data = array('ids' => $ids_data->all());
+        $response->data = array('ids' => $ids_data->values());
         return response()->json($response, Response::HTTP_OK);
     }
 
@@ -51,7 +54,7 @@ class ChallengeOneController extends Controller
         $response = new \stdClass();
         $response->code = Response::HTTP_OK;
         $response->message = 'Names products has been successfully obtained';
-        $response->data = array('names' => $names_data->all());
+        $response->data = array('names' => $names_data->values());
         return response()->json($response, Response::HTTP_OK);
     }
 

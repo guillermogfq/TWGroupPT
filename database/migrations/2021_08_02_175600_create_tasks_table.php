@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvoicesTable extends Migration
+class CreateTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->string('description');
+            $table->date('max_date_execution');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('seller_id');
-            $table->string('type');
-            $table->integer('total')->default(0);//Challenge 3
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -32,6 +30,6 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('tasks');
     }
 }
