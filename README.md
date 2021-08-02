@@ -1,61 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Acerca de la Prueba Técnica
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+La prueba fue desarrollada teniendo como entorno de desarrollo Visual Code Studio. Las versiones utilizadas del framework y otros son las siguientes:
 
-## About Laravel
+- Laravel *versión* *8.4*
+- PHP *versión* *7.4*
+- Composer *versión* *2.1.3*
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Desafío 1
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Para el desafío uno se solicitó utilizar Eloquent para responder a tres preguntas, las cuales en esencia se deben resolver con funciones de agregación. Se utilizó un Controller para responder a las preguntas y se crean *endpoint* para dar respuesta a cada pregunta. A los endpoint creados **no** se le asoció un ruta en los archivos de configuración (`routes/api.php` o `routes/web.php`);
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### Pregunta 1:
+**Pregunta:** *Obtener precio total de la factura.*
+**Archivo Solución:** `app/Http/Controllers/ChallengeOneController.php`
+**Función Solución:** `challengeOneOne(Invoice $invoice)`
+Para esta consulta asumo las cualidades de un endpoint en un controller y asumo que recibo el `Invoice`en la ruta, por lo tanto lo puedo recibir cómo parámetro.
 
-## Learning Laravel
+#### Pregunta 2:
+**Pregunta:** *Obtener todos id de las facturas que tengan productos con cantidad mayor a 100.*
+**Archivo Solución:** `app/Http/Controllers/ChallengeOneController.php`
+**Función Solución:** `challengeOneTwo()`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### Pregunta 3:
+**Pregunta:** *Obtener todos los nombres de los productos cuyo valor final sea superior a $1.000.000 CLP.*
+**Archivo Solución:** `app/Http/Controllers/ChallengeOneController.php`
+**Función Solución:** `challengeOneTreeA()` y `challengeOneTreeB()`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Para este caso, si implementan dos soluciones, debido a que quedo con la duda si se refieren al precio final cómo `quantity * price` o sólo `price`;
 
-## Laravel Sponsors
+## Desafío 2
+**Pregunta:** *Indica paso a paso los comandos para una instalación básica de Laravel que me permita ver la página principal (recuerda describir qué hace cada comando).*
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- `composer create-project laravel/laravel <name_project>`: Siendo *Composer* uno de los principales gestores de paquetes de **PHP**, se utiliza este comando para crear un proyecto con el nombre que se indique (`<name_project>`) y además descargue todas las dependencias necesarias para desplegar un proyecto básico.
+- `cd <name_project>`: para acceder a la carpeta del proyecto.
+- `php artisa serve --port 8080`: para servir el proyecto en local, tiene puerto por defecto el 8000, por lo tanto se puede omitir su configuración.
+- `http://localhost:8000/`: en un navegador, ingresando a la ruta indicada podrá visualizar la pantalla inicial de su proyecto.
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Opcional:** (*es opcional, si no requiere registrar los datos de BD inicialmente*)
+- Con un editor de texto o IDE de uso cotidiano, abrir el archivo `.env`que se encuentra en el directorio raiz del proyecto. En ese archivo podrá configurar la datos necesarios para iniciar la BD de su proyecto.
 
 ## License
 
